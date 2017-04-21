@@ -1,1 +1,313 @@
 # unmazowa.github.io
+<!DOCTYPE html>
+<html>
+<head>
+	<title> abcdefg </title>
+	<style type="text/css">
+		html, body{
+			margin: 0;
+			overflow: hidden;
+			height: 100%;
+		}
+		canvas[resize]{
+			width: 100%;
+			height: 100%;
+            background-color : #e6e6ed;
+		}
+	</style>
+<script type="text/javascript" src="http://paperjs.org/assets/js/paper.js"></script>
+	
+</head>
+<body>
+<canvas id = "canvas_1" resize = "true"></canvas>
+<script type="text/paperscript" canvas = "canvas_1">
+
+
+
+var all
+
+
+
+var background = new Path.Rectangle({
+    point:[0, 0],
+    size:[view.viewSize.width, view.viewSize.height],
+    fillColor: "red" });
+
+ var star2 = new Path.Star({
+    center: [50,50],
+    points: 4,
+    radius1: 30,
+    radius2: 10,
+    fillColor: 'white'
+ });
+
+
+var hand = new Shape.Ellipse({
+    center: [100,650],
+    radius: [70,70],
+    fillColor: 'white',
+    strokeColor: 'black',
+    strokeWidth: 10
+});
+
+var hand2 = hand.clone();
+hand2.position.x += 630;
+
+var hands = new Group({
+    children:[hand, hand2]
+});
+
+
+var foot = new Shape.Ellipse({
+    center: [290,750],
+    radius: [120,90],
+    fillColor: 'white',
+    strokeColor: 'black',
+    strokeWidth: 10,
+    rotate:(30)
+   
+});
+
+
+
+var foot2 = foot.clone();
+foot2.position.x += 240;
+foot2.scale(1,-1);
+
+var feet = new Group({
+    children:[foot, foot2]
+});
+
+
+var body = new Path.RegularPolygon({
+    center: [415, 600],
+    sides: 3,
+    radius: 330,
+    fillColor: 'black'
+});
+
+var button = new Path.Ellipse({
+    center: [415,630],
+    radius: [20,20],
+    fillColor:'white'
+});
+
+var button2 = button.clone();
+button2.position.y += 70;
+
+var bbody = new Group({
+    children:[body, button, button2]
+});
+
+
+var cap = new Path({
+    segments: [[200,300], [340, 120], [150, 50]],
+    fillColor: 'black',
+    strokeColor:'black',
+    strokeWidth : 10,
+    strokeJoin : 'round',
+    closed : true
+});
+
+var bell = new Shape.Ellipse({
+    center: [140,40],
+    radius: 50,
+    fillColor: 'white',
+    strokeColor:'black',
+    strokeWidth:10
+});
+
+var ccap = new Group({
+    children: [cap, bell]
+});
+
+
+
+var face = new Shape.Ellipse({
+    center: [415, 340],
+    radius: [250, 240],
+    fillColor: 'white',
+    strokeColor:'black',
+    strokeWidth : 10
+});
+
+
+var eye1 = new Shape.Ellipse({
+    center: [300, 350],
+    radius: [70, 90],
+    fillColor: 'white',
+    strokeColor:'black',
+    strokeWidth : 10
+});
+
+var eye2 = eye1.clone();
+eye2.position.x += 230;
+
+var nose = new Shape.Ellipse({
+    center: [415, 410],
+    radius: [3, 3],
+    fillColor: 'black',
+    strokeColor:'black',
+    strokeWidth : 10
+});
+
+var eye3 = new Shape.Ellipse({
+    center:[320, 350],
+    radius: [50, 70],
+    fillColor:'black'
+});
+
+var eye4 = eye3.clone();
+eye4.position.x += 190;
+
+
+
+var mouth = new Shape.Ellipse({
+    center: [415, 470],
+    radius: [20, 30],
+    fillColor: 'white',
+    strokeColor:'black',
+    strokeWidth : 10
+});
+
+var fface = new Group({
+    children:[face, nose, eye1,eye2,eye3,eye4,mouth]
+});
+
+
+var all = new Group({
+    children: [hands, feet, ccap, bbody, fface]
+});
+
+
+all.scaling = 0.15;
+all.applyMatrix = false;
+
+
+
+
+var all2 = all.copyTo(project);
+all2.position.y -= 335
+all2.children[4].children[0].fillColor = 'red';
+
+
+var all3 = all.copyTo(project);
+all3.position.x -= 80
+all3.position.y -= 170
+
+
+var all4 = all.copyTo(project);
+all4.position.y -= 170;
+all4.position.x += 95;
+
+
+var all5 = all.copyTo(project);
+all5.position.x -= 180
+
+
+
+
+var all6 = all.copyTo(project);
+all6.position.x += 190;
+
+
+
+var all7 = all.copyTo(project);
+all7.position.x -= 250
+all7.position.y += 170
+
+
+
+
+
+var all8 = all.copyTo(project);
+all8.position.x -= 80
+all8.position.y += 170
+
+
+var all9 = all.copyTo(project);
+all9.position.x += 95
+all9.position.y += 170
+
+
+var all10 = all.copyTo(project);
+all10.position.x += 270
+all10.position.y += 170
+
+var star = new Path.Star({
+    center: view.center,
+    points: 8,
+    radius1: 25,
+    radius2: 40,
+    fillColor: 'black'
+});
+
+
+
+var whole = new Group({
+    children:[all,all2,all3,all4,all5,all6,all7,all8,all9,all10]
+});
+
+
+
+function onMouseMove(event){
+    
+    star.position = event.point;
+    all.applyMatrix = false;
+    all.scaling = map(event.point.y,0,1150,0.2,3)
+    star.opacity = map(event.point.x,0,1150,0.6,1)
+    
+};
+
+function onKeyDown(event){
+    if(event.key == 'enter'){
+        whole.selected = true;
+    }
+    if(event.key == 'a'){
+        view.center.pivot = whole.rotation = 10;
+    };
+    if(event.key == 'd'){
+        view.center.pivot = whole.rotation = -10;
+    };
+}
+
+function onKeyUp(event){
+    if(event.key == 'enter'){
+        whole.selected = false; 
+    };
+};
+
+
+
+
+function onResize(event){
+    
+    whole.position = view.center;
+    background.position.x = view.center;
+    
+};
+
+
+
+
+
+function onFrame(event) {
+    
+    all2.children[4].children[0].fillColor.hue += 1*8;
+    background.fillColor.hue += 1*5;
+    star.fillColor.hue += 1*3;
+    star.rotate(3);
+    star2.position = Point.random() * view.size;
+    
+}
+
+
+function map(value, start1, stop1, start2, stop2) {
+    return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+};
+
+
+</script>
+
+</body>
+</html>
