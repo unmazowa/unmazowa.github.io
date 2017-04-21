@@ -1,4 +1,3 @@
-# unmazowa.github.io
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +14,7 @@
             background-color : #e6e6ed;
 		}
 	</style>
-<script type="text/javascript" src="http://paperjs.org/assets/js/paper.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.10.3/paper-full.min.js"></script>
 	
 </head>
 <body>
@@ -24,20 +23,21 @@
 
 
 
+
 var all
 
 
 
-var background = new Path.Rectangle({
+var bg = new Path.Rectangle({
     point:[0, 0],
     size:[view.viewSize.width, view.viewSize.height],
-    fillColor: "red" });
+    fillColor: 'red'});
 
  var star2 = new Path.Star({
     center: [50,50],
     points: 4,
-    radius1: 30,
-    radius2: 10,
+    radius1: 45,
+    radius2: 15,
     fillColor: 'white'
  });
 
@@ -240,6 +240,7 @@ var star = new Path.Star({
     radius1: 25,
     radius2: 40,
     fillColor: 'black'
+
 });
 
 
@@ -263,30 +264,40 @@ function onKeyDown(event){
     if(event.key == 'enter'){
         whole.selected = true;
     }
-    if(event.key == 'a'){
+    if(event.key == 'right'){
         view.center.pivot = whole.rotation = 10;
     };
-    if(event.key == 'd'){
+    if(event.key == 'left'){
         view.center.pivot = whole.rotation = -10;
     };
-}
-
-function onKeyUp(event){
-    if(event.key == 'enter'){
-        whole.selected = false; 
+    if(event.key == 'w'){
+        all2.position.y -= 10;
     };
-};
+    if(event.key == 'a'){
+        all2.position.x -= 10;
+    };
+    if(event.key == 's'){
+        all2.position.y += 10;
+    };
+    if(event.key == 'd'){
+        all2.position.x += 10;
+    };
 
 
+
+}
 
 
 function onResize(event){
     
     whole.position = view.center;
-    background.position.x = view.center;
+    bg.position = view.center;
     
 };
 
+function onMouseDown(event){
+    all_clone();
+};
 
 
 
@@ -294,7 +305,7 @@ function onResize(event){
 function onFrame(event) {
     
     all2.children[4].children[0].fillColor.hue += 1*8;
-    background.fillColor.hue += 1*5;
+    bg.fillColor.hue += 1*5;
     star.fillColor.hue += 1*3;
     star.rotate(3);
     star2.position = Point.random() * view.size;
@@ -305,6 +316,11 @@ function onFrame(event) {
 function map(value, start1, stop1, start2, stop2) {
     return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
 };
+
+
+
+
+
 
 
 </script>
