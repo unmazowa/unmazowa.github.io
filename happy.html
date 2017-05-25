@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type = "text/javascript" src = "http://paperjs.org/assets/js/paper.js"> </script>
+
+<canvas id="canvas-1" hidpi="on" resize = "true"></canvas>
+
+<style>
+	
+canvas{
+	width: 100%;
+	height: 100%;
+}
+
+</style>
+
+<script type= "text/paperscript" canvas = "canvas-1" >
+var MyClass = function(){
+
+ this.text = new PointText({
+    point: [30, 50],
+    content: 'Hhhhooorrraayyyy!!!!!!!!',
+    fillColor: 'black',
+    fontWeight: 'bold',
+    fontSize: 70
+ });
+ this.text.position.y -= 100;
+
+this.background = new Path.Rectangle({
+    point:[0, 0],
+    size:[view.viewSize.width, view.viewSize.height],
+    fillColor: "red" });
+
+ this.hand = new Shape.Ellipse({
+     center: [100,650],
+     radius: [70,70],
+     fillColor: 'white',
+     strokeColor: 'black',
+     strokeWidth: 10
+ });
+ this.hand.position.y -= 200;
+ this.hand2 = this.hand.clone();
+ this.hand2.position.x += 630;
+ this.hands = new Group({
+     children:[this.hand, this.hand2]
+ });
+ this.foot = new Shape.Ellipse({
+     center: [290,750],
+     radius: [120,90],
+     fillColor: 'white',
+     strokeColor: 'black',
+     strokeWidth: 10,
+     rotate:(30)
+    
+ });
+ this.foot2 = this.foot.clone();
+ this.foot2.position.x += 240;
+ this.foot2.scale(1,-1);
+
+ this.feet = new Group({
+     children:[this.foot, this.foot2]
+ });
+
+ this.body = new Path.RegularPolygon({
+     center: [415, 600],
+     sides: 3,
+     radius: 330,
+     fillColor: 'black'
+ });
+
+ this.button = new Path.Ellipse({
+     center: [415,630],
+     radius: [20,20],
+     fillColor:'white'
+ });
+
+ this.button2 = this.button.clone();
+ this.button2.position.y += 70;
+ this.bbody = new Group({
+     children:[this.body, this.button, this.button2]
+ });
+
+ this.cap = new Path({
+     segments: [[200,300], [340, 120], [150, 50]],
+     fillColor: 'black',
+     strokeColor:'black',
+     strokeWidth : 10,
+     strokeJoin : 'round',
+     closed : true
+ });
+
+ this.bell = new Shape.Ellipse({
+     center: [140,40],
+     radius: 50,
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth:10
+ });
+ this.ccap = new Group({
+     children: [this.cap, this.bell]
+ });
+
+ this.face = new Shape.Ellipse({
+     center: [415, 340],
+     radius: [250, 240],
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth : 10
+ });
+ this.eye1 = new Shape.Ellipse({
+     center: [300, 350],
+     radius: [70, 90],
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth : 10
+ });
+ this.eye2 = this.eye1.clone();
+ this.eye2.position.x += 230;
+ this.nose = new Shape.Ellipse({
+     center: [415, 410],
+     radius: [3, 3],
+     fillColor: 'black',
+     strokeColor:'black',
+     strokeWidth : 10
+ });
+ this.eye3 = new Shape.Ellipse({
+     center:[320, 350],
+     radius: [50, 70],
+     fillColor:'red'
+ });
+ this.eye4 = this.eye3.clone();
+ this.eye4.position.x += 210;
+ this.eye4.position.y += 14;
+ this.eye3.position.x -= 15;
+ this.eye3.position.y -= 14;
+
+ this.mouth = new Shape.Ellipse({
+     center: [415, 470],
+     radius: [20, 30],
+     fillColor: 'black',
+     strokeColor:'black',
+     strokeWidth : 10
+     });
+     
+ this.fface = new Group
+  ({
+     children:[this.face, this.nose, this.eye1,this.eye2,this.eye3,this.eye4,this.mouth]
+     });
+
+     this.character = new Group
+     ({
+      children: [this.text, this.hands, this.feet, this.ccap, this.bbody, this.fface]
+     });
+  this.character.scaling = 0.6;
+     this.character.applyMatrix = false;
+
+     this.changeText = function(forContent){
+      this.text.content = forContent;
+
+ this.title = new PointText(new Point(30, 50));
+ this.title.fontSize = 21;
+ this.title.fillColor = 'black';
+ this.title.content = "NONG \n\nclick these characters \nand enjoy the music\nunmazowa@gmail.com";
+ this.title.fontWeight = 'bold';     
+     }
+
+}
+
+var firstCharacter = new MyClass();
+firstCharacter.character.position.y = view.bounds.height/2;
+firstCharacter.character.position.x = view.bounds.width/2;
+
+
+function onFrame(event) {
+    
+    firstCharacter.eye3.fillColor.hue += 1*8;
+    firstCharacter.eye4.fillColor.hue += 1*8;
+    firstCharacter.background.fillColor.hue += 1*5;
+    firstCharacter.character.rotate(2);
+    
+}
+
+
+function onMouseMove(event){
+    firstCharacter.character.scaling = map(event.point.y,0,1150,0.2,3)
+
+}
+
+function map(value, start1, stop1, start2, stop2) {
+    return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+}
+
+
+
+
+</script> 
+
+<body>
+	
+
+
+
+</body>
+	
+
+</head>

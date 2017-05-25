@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>nong</title>
+
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+
+<script type = "text/javascript" src = "http://paperjs.org/assets/js/paper.js"> </script>
+
+
+
+<style>
+
+html, body{
+    height:100%;
+    font-family: 'Baloo Bhaina', cursive;
+}
+div.container {
+    width: 100%;
+    border: 0px solid gray;
+    background-color: white;
+    
+}
+
+header{
+    max-height: 100px;
+    color: black;
+    background-color: white;
+    text-align: center;
+    margin: 0;
+
+}
+
+footer{
+    clear: right;
+    padding: 1em;
+    color: black;
+    text-align: center;
+}
+
+nav {
+    width: 100%
+    height: 30px;
+    margin: 0;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li{
+    float:left;
+    padding-left: 110px;
+    position: relative;
+    left:24.9%;
+}
+
+   
+nav ul a {
+    text-decoration: none;
+}
+
+ a:link { 
+    color: red; text-decoration: none;
+}
+
+ a:visited { 
+    color: black; text-decoration: none;
+}
+
+ a:hover { 
+    color: blue; text-decoration: none;
+}
+
+
+
+iframe{
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+}
+
+canvas[resize]{ 
+    width: 100%;
+    height: 100%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<audio id = "audio01" >
+  <source src="001.mp3" type="audio/mp3">
+</audio>
+
+<audio id = "audio02" >
+  <source src="002.mp3" type="audio/mp3">
+</audio>
+
+
+<div class="container">
+
+
+
+<header>
+   <a href="article01.html"><h1>NONG</h1></a>
+</header>
+  
+<nav>
+  <ul>
+    <li><a href="midterm.html" target = "contents">ABOUT</a></li>
+    <li><a href="0002.html" target = "contents">NONG</a></li>
+    <li><a href="happy.html" target = "_blank">DANCE!</a></li>
+    <li><a href="no.html" target = "contents">stop...</a></li>
+
+  </ul>
+</nav>
+
+
+
+<iframe src="0002.html" name = "contents" frameborder="0"></iframe>
+
+<canvas id="canvas-1" hidpi="on" resize = "true"></canvas>
+
+<footer>Copyright &copy; W3Schools.com</footer>
+
+
+</div>
+
+
+
+<script type= "text/paperscript" canvas = "canvas-1" >
+
+
+ function audioPlay(forAudio){
+    var audio = document.getElementById(forAudio);
+    if(audio.paused){
+        audio.play();
+    }else{
+        audio.pause();
+    }
+
+}
+
+var background = new Raster
+(
+ {
+  source: 'http://127.0.0.1/data/Untitled-1.png',
+     position : view.center,
+     size:100%
+ }
+);
+
+var MyClass = function(){
+
+ this.text = new PointText({
+    point: [50, 50],
+    content: 'The contents of the point text',
+    fillColor: 'black',
+    fontWeight: 'bold',
+    fontSize: 50
+ });
+
+
+ this.hand = new Shape.Ellipse({
+     center: [100,650],
+     radius: [70,70],
+     fillColor: 'white',
+     strokeColor: 'black',
+     strokeWidth: 10
+ });
+ this.hand2 = this.hand.clone();
+ this.hand2.position.x += 630;
+ this.hands = new Group({
+     children:[this.hand, this.hand2]
+ });
+ this.foot = new Shape.Ellipse({
+     center: [290,750],
+     radius: [120,90],
+     fillColor: 'white',
+     strokeColor: 'black',
+     strokeWidth: 10,
+     rotate:(30)
+    
+ });
+ this.foot2 = this.foot.clone();
+ this.foot2.position.x += 240;
+ this.foot2.scale(1,-1);
+
+ this.feet = new Group({
+     children:[this.foot, this.foot2]
+ });
+
+ this.body = new Path.RegularPolygon({
+     center: [415, 600],
+     sides: 3,
+     radius: 330,
+     fillColor: 'black'
+ });
+
+ this.button = new Path.Ellipse({
+     center: [415,630],
+     radius: [20,20],
+     fillColor:'white'
+ });
+
+ this.button2 = this.button.clone();
+ this.button2.position.y += 70;
+ this.bbody = new Group({
+     children:[this.body, this.button, this.button2]
+ });
+
+ this.cap = new Path({
+     segments: [[200,300], [340, 120], [150, 50]],
+     fillColor: 'black',
+     strokeColor:'black',
+     strokeWidth : 10,
+     strokeJoin : 'round',
+     closed : true
+ });
+
+ this.bell = new Shape.Ellipse({
+     center: [140,40],
+     radius: 50,
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth:10
+ });
+ this.ccap = new Group({
+     children: [this.cap, this.bell]
+ });
+
+ this.face = new Shape.Ellipse({
+     center: [415, 340],
+     radius: [250, 240],
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth : 10
+ });
+ this.eye1 = new Shape.Ellipse({
+     center: [300, 350],
+     radius: [70, 90],
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth : 10
+ });
+ this.eye2 = this.eye1.clone();
+ this.eye2.position.x += 230;
+ this.nose = new Shape.Ellipse({
+     center: [415, 410],
+     radius: [3, 3],
+     fillColor: 'black',
+     strokeColor:'black',
+     strokeWidth : 10
+ });
+ this.eye3 = new Shape.Ellipse({
+     center:[320, 350],
+     radius: [50, 70],
+     fillColor:'black'
+ });
+ this.eye4 = this.eye3.clone();
+ this.eye4.position.x += 190;
+ this.mouth = new Shape.Ellipse({
+     center: [415, 470],
+     radius: [20, 30],
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth : 10
+     });
+     
+ this.fface = new Group
+  ({
+     children:[this.face, this.nose, this.eye1,this.eye2,this.eye3,this.eye4,this.mouth]
+     });
+
+     this.character = new Group
+     ({
+      children: [this.text, this.hands, this.feet, this.ccap, this.bbody, this.fface]
+     });
+  this.character.scaling = 0.6;
+     this.character.applyMatrix = false;
+
+     this.changeText = function(forContent){
+      this.text.content = forContent;
+
+ this.title = new PointText(new Point(30, 50));
+ this.title.fontSize = 21;
+ this.title.fillColor = 'black';
+ this.title.content = "NONG \n\nclick these characters \nand enjoy the music\nunmazowa@gmail.com";
+ this.title.fontWeight = 'bold';     
+     }
+
+}
+
+var firstCharacter = new MyClass();
+firstCharacter.changeText("                      nong!");
+firstCharacter.character.position = new Point (view.bounds.width/4*1.5,400);
+
+
+var secondCharacter = new MyClass();
+secondCharacter.character.position = new Point (view.bounds.width/4*2.66,400);
+secondCharacter.changeText("                   nohohong!");
+ 
+
+firstCharacter.character.onMouseDown= function(){
+  audioPlay("audio01");
+}
+
+secondCharacter.character.onMouseDown = function(){
+ audioPlay("audio02");
+}
+
+
+
+
+function map(value, start1, stop1, start2, stop2) {
+    return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+}
+
+
+</script> 
+
+</body>
+
+</html>
