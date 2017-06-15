@@ -1,268 +1,338 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> nong </title>
-	<style type="text/css">
-		html, body{
-			margin: 0;
-			overflow: hidden;
-			height: 100%;
-		}
-		canvas[resize]{
-			width: 100%;
-			height: 100%;
-            background-color : #e6e6ed;
-		}
-	</style>
-<script type="text/javascript" src="http://paperjs.org/assets/js/paper.js"></script>
-	
-</head>
-<body>
-<canvas id = "canvas-1" resize = "true"></canvas>
-<script type="text/paperscript" canvas = "canvas-1">
+
+<title>nong</title>
+
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+
+<script type = "text/javascript" src = "http://paperjs.org/assets/js/paper.js"> </script>
 
 
-var all
-var bg = new Path.Rectangle({
-    point:[0, 0],
-    size:[view.viewSize.width, view.viewSize.height],
-    fillColor: 'red'});
- var star2 = new Path.Star({
-    center: [50,50],
-    points: 4,
-    radius1: 45,
-    radius2: 15,
-    fillColor: 'white'
- });
-var hand = new Shape.Ellipse({
-    center: [100,650],
-    radius: [70,70],
-    fillColor: 'white',
-    strokeColor: 'black',
-    strokeWidth: 10
-});
-var hand2 = hand.clone();
-hand2.position.x += 630;
-var hands = new Group({
-    children:[hand, hand2]
-});
-var foot = new Shape.Ellipse({
-    center: [290,750],
-    radius: [120,90],
-    fillColor: 'white',
-    strokeColor: 'black',
-    strokeWidth: 10,
-    rotate:(30)
+
+<style>
+
+html, body{
+    height:100%;
+    font-family: 'Baloo Bhaina', cursive;
+}
+div.container {
+    width: 100%;
+    border: 0px solid gray;
+    background-color: white;
+    
+}
+
+header{
+    max-height: 100px;
+    color: black;
+    background-color: white;
+    text-align: center;
+    margin: 0;
+
+}
+
+footer{
+    clear: right;
+    padding-top: 30px;
+    color: black;
+    text-align: center;
+}
+
+nav {
+    width: 100%
+    height: 30px;
+    margin: 0;
+    text-align: center;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li{
+    float:left;
+    padding-left: 110px;
+    position: relative;
+    left:23.9%;
+}
+
    
-});
-var foot2 = foot.clone();
-foot2.position.x += 240;
-foot2.scale(1,-1);
-var feet = new Group({
-    children:[foot, foot2]
-});
-var body = new Path.RegularPolygon({
-    center: [415, 600],
-    sides: 3,
-    radius: 330,
-    fillColor: 'black'
-});
-var button = new Path.Ellipse({
-    center: [415,630],
-    radius: [20,20],
-    fillColor:'white'
-});
-var button2 = button.clone();
-button2.position.y += 70;
-var bbody = new Group({
-    children:[body, button, button2]
-});
-var cap = new Path({
-    segments: [[200,300], [340, 120], [150, 50]],
-    fillColor: 'black',
-    strokeColor:'black',
-    strokeWidth : 10,
-    strokeJoin : 'round',
-    closed : true
-});
-var bell = new Shape.Ellipse({
-    center: [140,40],
-    radius: 50,
-    fillColor: 'white',
-    strokeColor:'black',
-    strokeWidth:10
-});
-var ccap = new Group({
-    children: [cap, bell]
-});
-var face = new Shape.Ellipse({
-    center: [415, 340],
-    radius: [250, 240],
-    fillColor: 'white',
-    strokeColor:'black',
-    strokeWidth : 10
-});
-var eye1 = new Shape.Ellipse({
-    center: [300, 350],
-    radius: [70, 90],
-    fillColor: 'white',
-    strokeColor:'black',
-    strokeWidth : 10
-});
-var eye2 = eye1.clone();
-eye2.position.x += 230;
-var nose = new Shape.Ellipse({
-    center: [415, 410],
-    radius: [3, 3],
-    fillColor: 'black',
-    strokeColor:'black',
-    strokeWidth : 10
-});
-var eye3 = new Shape.Ellipse({
-    center:[320, 350],
-    radius: [50, 70],
-    fillColor:'black'
-});
-var eye4 = eye3.clone();
-eye4.position.x += 190;
-var mouth = new Shape.Ellipse({
-    center: [415, 470],
-    radius: [20, 30],
-    fillColor: 'white',
-    strokeColor:'black',
-    strokeWidth : 10
-});
-var fface = new Group({
-    children:[face, nose, eye1,eye2,eye3,eye4,mouth]
-});
-var all = new Group({
-    children: [hands, feet, ccap, bbody, fface]
-});
-all.scaling = 0.15;
-all.applyMatrix = false;
-var all2 = all.copyTo(project);
-all2.position.y -= 335
-all2.children[4].children[0].fillColor = 'red';
-var all3 = all.copyTo(project);
-all3.position.x -= 80
-all3.position.y -= 170
-var all4 = all.copyTo(project);
-all4.position.y -= 170;
-all4.position.x += 95;
-var all5 = all.copyTo(project);
-all5.position.x -= 180
-var all6 = all.copyTo(project);
-all6.position.x += 190;
-var all7 = all.copyTo(project);
-all7.position.x -= 250
-all7.position.y += 170
-var all8 = all.copyTo(project);
-all8.position.x -= 80
-all8.position.y += 170
-var all9 = all.copyTo(project);
-all9.position.x += 95
-all9.position.y += 170
-var all10 = all.copyTo(project);
-all10.position.x += 270
-all10.position.y += 170
-var title = new PointText(new Point(30, 50));
-title.fontSize = 21;
-title.fillColor = 'black';
-title.content = "NONG \n\npress some keys \nand click anywhere to interact\nunmazowa@gmail.com";
-title.fontWeight = 'bold';
-var eye01 = new Shape.Ellipse({
-    center: [300, 350],
-    radius: [70, 90],
-    fillColor: 'white',
-    strokeColor:'black',
-    strokeWidth : 10
-});
-var eye02 = eye01.clone();
-eye02.position.x += 230;
-var nose01 = new Shape.Ellipse({
-    center: [415, 410],
-    radius: [3, 3],
-    fillColor: 'black',
-    strokeColor:'black',
-    strokeWidth : 10
-});
-var eye03 = new Shape.Ellipse({
-    center:[320, 350],
-    radius: [50, 70],
-    fillColor:'black'
-});
-var eye04 = eye03.clone();
-eye04.position.x += 190;
-var mouth01 = new Shape.Ellipse({
-    center: [415, 470],
-    radius: [20, 30],
-    fillColor: 'white',
-    strokeColor:'black',
-    strokeWidth : 10
-});
-var ffface = new Group({
-    children:[eye01,eye02,eye03,eye04,mouth01,nose01]
-});
-ffface.scaling = 0.15;
-var whole = new Group({
-    children:[all,all2,all3,all4,all5,all6,all7,all8,all9,all10]
-});
-function onMouseMove(event){
-    
-    ffface.position = event.point;
-    all.applyMatrix = false;
-    all.scaling = map(event.point.y,0,1150,0.2,3)
-    
-};
-function onKeyDown(event){
-    if(event.key == 'enter'){
-        whole.selected = true;
-    }
-    if(event.key == 'right'){
-        view.center.pivot = whole.rotation = 10;
-    };
-    if(event.key == 'left'){
-        view.center.pivot = whole.rotation = -10;
-    };
-    if(event.key == 'w'){
-        all2.position.y -= 10;
-    };
-    if(event.key == 'a'){
-        all2.position.x -= 10;
-    };
-    if(event.key == 's'){
-        all2.position.y += 10;
-    };
-    if(event.key == 'd'){
-        all2.position.x += 10;
-    };
+nav ul a {
+    text-decoration: none;
 }
-function onKeyup(event){
-};
-function onResize(event){
-    
-    whole.position = view.center;
-    bg.position = view.center;
-    
-};
 
-tool.onMouseDown = function(event) {
-    
-    var dododo = ffface.clone();
-};
-function onFrame(event) {
-    
-    all2.children[4].children[0].fillColor.hue += 1*8;
-    bg.fillColor.hue += 1*5;
-    star2.position = Point.random() * view.size;
-    
+ a:link { 
+    color: red; text-decoration: none;
 }
+
+ a:visited { 
+    color: black; text-decoration: none;
+}
+
+ a:hover { 
+    color: blue; text-decoration: none;
+}
+
+
+
+iframe{
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+
+}
+
+canvas[resize]{ 
+    width: 100%;
+    height: 100%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<audio id = "audio01" >
+  <source src="001.mp3" type="audio/mp3">
+</audio>
+
+<audio id = "audio02" >
+  <source src="002.mp3" type="audio/mp3">
+</audio>
+
+
+<div class="container">
+
+
+
+<header>
+   <a href="index.html"><h1>NONG</h1></a>
+</header>
+  
+<nav>
+  <ul>
+    <li><a href="midterm.html" target = "contents">ABOUT</a></li>
+    <li><a href="0002.html" target = "contents">NONG</a></li>
+    <li><a href="happy.html" target = "_blank">DANCE!</a></li>
+    <li><a href="sad.html" target = "contents">stop...</a></li>
+
+  </ul>
+</nav>
+
+
+
+<iframe src="0002.html" name = "contents" frameborder="0"></iframe>
+
+<canvas id="canvas-1" hidpi="on" resize = "true"></canvas>
+
+<footer>Copyright &copy; W3Schools.com</footer>
+
+
+</div>
+
+
+
+<script type= "text/paperscript" canvas = "canvas-1" >
+
+
+ function audioPlay(forAudio){
+    var audio = document.getElementById(forAudio);
+    if(audio.paused){
+        audio.play();
+    }else{
+        audio.pause();
+    }
+
+}
+
+var background = new Raster
+(
+ {
+  source: 'http://127.0.0.1/data/Untitled-1.png',
+     position : view.center,
+     size:100%
+ }
+);
+
+var MyClass = function(){
+
+ this.text = new PointText({
+    point: [50, 50],
+    content: 'The contents of the point text',
+    fillColor: 'black',
+    fontWeight: 'bold',
+    fontSize: 50
+ });
+
+
+ this.hand = new Shape.Ellipse({
+     center: [100,650],
+     radius: [70,70],
+     fillColor: 'white',
+     strokeColor: 'black',
+     strokeWidth: 10
+ });
+ this.hand2 = this.hand.clone();
+ this.hand2.position.x += 630;
+ this.hands = new Group({
+     children:[this.hand, this.hand2]
+ });
+ this.foot = new Shape.Ellipse({
+     center: [290,750],
+     radius: [120,90],
+     fillColor: 'white',
+     strokeColor: 'black',
+     strokeWidth: 10,
+     rotate:(30)
+    
+ });
+ this.foot2 = this.foot.clone();
+ this.foot2.position.x += 240;
+ this.foot2.scale(1,-1);
+
+ this.feet = new Group({
+     children:[this.foot, this.foot2]
+ });
+
+ this.body = new Path.RegularPolygon({
+     center: [415, 600],
+     sides: 3,
+     radius: 330,
+     fillColor: 'black'
+ });
+
+ this.button = new Path.Ellipse({
+     center: [415,630],
+     radius: [20,20],
+     fillColor:'white'
+ });
+
+ this.button2 = this.button.clone();
+ this.button2.position.y += 70;
+ this.bbody = new Group({
+     children:[this.body, this.button, this.button2]
+ });
+
+ this.cap = new Path({
+     segments: [[200,300], [340, 120], [150, 50]],
+     fillColor: 'black',
+     strokeColor:'black',
+     strokeWidth : 10,
+     strokeJoin : 'round',
+     closed : true
+ });
+
+ this.bell = new Shape.Ellipse({
+     center: [140,40],
+     radius: 50,
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth:10
+ });
+ this.ccap = new Group({
+     children: [this.cap, this.bell]
+ });
+
+ this.face = new Shape.Ellipse({
+     center: [415, 340],
+     radius: [250, 240],
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth : 10
+ });
+ this.eye1 = new Shape.Ellipse({
+     center: [300, 350],
+     radius: [70, 90],
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth : 10
+ });
+ this.eye2 = this.eye1.clone();
+ this.eye2.position.x += 230;
+ this.nose = new Shape.Ellipse({
+     center: [415, 410],
+     radius: [3, 3],
+     fillColor: 'black',
+     strokeColor:'black',
+     strokeWidth : 10
+ });
+ this.eye3 = new Shape.Ellipse({
+     center:[320, 350],
+     radius: [50, 70],
+     fillColor:'black'
+ });
+ this.eye4 = this.eye3.clone();
+ this.eye4.position.x += 190;
+ this.mouth = new Shape.Ellipse({
+     center: [415, 470],
+     radius: [20, 30],
+     fillColor: 'white',
+     strokeColor:'black',
+     strokeWidth : 10
+     });
+     
+ this.fface = new Group
+  ({
+     children:[this.face, this.nose, this.eye1,this.eye2,this.eye3,this.eye4,this.mouth]
+     });
+
+     this.character = new Group
+     ({
+      children: [this.text, this.hands, this.feet, this.ccap, this.bbody, this.fface]
+     });
+  this.character.scaling = 0.6;
+     this.character.applyMatrix = false;
+
+     this.changeText = function(forContent){
+      this.text.content = forContent;
+
+ this.title = new PointText(new Point(30, 50));
+ this.title.fontSize = 21;
+ this.title.fillColor = 'black';
+ this.title.content = "NONG \n\nclick these characters \nand enjoy the music\nunmazowa@gmail.com";
+ this.title.fontWeight = 'bold';     
+     }
+
+}
+
+var firstCharacter = new MyClass();
+firstCharacter.changeText("                      nong!");
+firstCharacter.character.position = new Point (view.bounds.width/4*1.5,400);
+
+
+var secondCharacter = new MyClass();
+secondCharacter.character.position = new Point (view.bounds.width/4*2.66,400);
+secondCharacter.changeText("                   nohohong!");
+ 
+
+firstCharacter.character.onMouseDown= function(){
+  audioPlay("audio01");
+}
+
+secondCharacter.character.onMouseDown = function(){
+ audioPlay("audio02");
+}
+
+
+
+
 function map(value, start1, stop1, start2, stop2) {
     return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
-};
+}
 
 
-</script>
+</script> 
 
 </body>
+
 </html>
